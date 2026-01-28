@@ -20,7 +20,10 @@ export default function Home() {
             <span className="sr-only">パルチス</span>
           </div>
           <div className="min-w-0">
-            <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">パルチス</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">パルチス（Parchís）</h1>
+            <p className="mt-2 text-sm text-neutral-700">
+              パルチスはスペイン発祥のボードゲームで、ルドー（Ludo）系のゲームです。
+            </p>
             <p className="mt-1 text-sm text-neutral-600">
               サクッと遊べるローカル対戦 / CPU対戦。モードを選んで開始。
             </p>
