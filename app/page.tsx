@@ -1,65 +1,106 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-neutral-50 via-white to-neutral-100">
+      {/* subtle decorative blobs */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-neutral-200/60 blur-3xl" />
+        <div className="absolute top-24 -right-32 h-96 w-96 rounded-full bg-neutral-200/50 blur-3xl" />
+        <div className="absolute -bottom-40 left-1/3 h-[28rem] w-[28rem] rounded-full bg-neutral-300/30 blur-3xl" />
+      </div>
+
+      <div className="relative mx-auto max-w-3xl px-5 py-10 sm:py-14">
+        {/* header */}
+        <header className="flex items-start gap-4">
+          <div className="mt-0.5 grid h-11 w-11 place-items-center rounded-2xl bg-neutral-900 text-white shadow-sm">
+            <span className="text-lg font-bold" aria-hidden>
+              P
+            </span>
+            <span className="sr-only">パルチス</span>
+          </div>
+          <div className="min-w-0">
+            <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">パルチス</h1>
+            <p className="mt-1 text-sm text-neutral-600">
+              サクッと遊べるローカル対戦 / CPU対戦。モードを選んで開始。
+            </p>
+          </div>
+        </header>
+
+        {/* cards */}
+        <div className="mt-8 space-y-5">
+          <section className="rounded-3xl border border-neutral-200 bg-white/70 p-5 shadow-sm backdrop-blur sm:p-7">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-base font-semibold text-neutral-900">ルール要点</h2>
+              <div className="text-xs text-neutral-500">短縮版</div>
+            </div>
+            <ul className="mt-3 space-y-2 text-sm text-neutral-700">
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-neutral-400" />
+                <span>目的: 自分の駒4つをすべてゴールへ</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-neutral-400" />
+                <span>手番でサイコロを振り、出せる/動かせる駒を選んで進む</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-neutral-400" />
+                <span>6で出陣（ヤード→スタート）できる</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-neutral-400" />
+                <span>通常マスで捕獲すると+20の追加移動（選択式）</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-neutral-400" />
+                <span>セーフマスは捕獲なし（満杯=2駒なら到着不可）</span>
+              </li>
+            </ul>
+          </section>
+
+          <section className="rounded-3xl border border-neutral-200 bg-white/70 p-5 shadow-sm backdrop-blur sm:p-7">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-base font-semibold text-neutral-900">モード選択</h2>
+              <div className="text-xs text-neutral-500">/gameへ移動</div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <ModeCard href="/game?mode=solo" title="ソロ" desc="人間（赤） vs CPU3" />
+              <ModeCard href="/game?mode=local2" title="ローカル2人" desc="赤/青で対戦" />
+              <ModeCard href="/game?mode=local3" title="ローカル3人" desc="赤/青/黄で対戦" />
+              <ModeCard href="/game?mode=local4" title="ローカル4人" desc="全色で対戦" />
+            </div>
+
+            <p className="mt-4 text-xs text-neutral-600">
+              ヒント: モバイルは縦向きでも盤面だけ回転します。
+            </p>
+          </section>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </div>
+    </main>
+  );
+}
+
+function ModeCard({ href, title, desc }: { href: string; title: string; desc: string }) {
+  return (
+    <Link
+      href={href}
+      className="group relative rounded-2xl border border-neutral-200 bg-white px-4 py-4 shadow-sm transition
+                 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-md
+                 active:translate-y-0 active:shadow-sm
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/20"
+    >
+      <div className="flex items-center justify-between gap-4">
+        <div className="min-w-0">
+          <div className="text-base font-semibold text-neutral-900">{title}</div>
+          <div className="mt-1 text-sm text-neutral-600">{desc}</div>
         </div>
-      </main>
-    </div>
+        <div className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-neutral-900 text-white transition group-hover:scale-[1.02]">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </Link>
   );
 }
