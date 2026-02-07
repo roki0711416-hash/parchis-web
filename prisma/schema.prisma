@@ -1,19 +1,8 @@
-// Prisma is optional in this repo for now.
-// Enable it when you introduce persistence (matches, users, stats, etc.).
-
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// Minimal model to make migrations concrete.
-// Replace with real domain models when you add persistence.
-model KeyValue {
-  key   String @id
-  value String
-  updatedAt DateTime @updatedAt
+generator client {
+  provider = "prisma-client-js"
 }
