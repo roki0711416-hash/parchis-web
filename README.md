@@ -50,33 +50,7 @@ Create `.env.local` from the template:
 cp .env.example .env.local
 ```
 
-### 2) Database & migrations (Prisma)
-
-This repo includes Prisma as an optional foundation for adding persistence.
-
-- Schema: `prisma/schema.prisma`
-- Local migration (creates a migration folder you should commit):
-
-```bash
-npm run db:migrate:dev
-```
-
-- Production migration on Vercel:
-	- Set `DATABASE_URL` in **Production** env vars.
-	- Set **Build Command** in Vercel to:
-
-```bash
-npm run vercel-build
-```
-
-This runs:
-- `prisma generate`
-- `prisma migrate deploy`
-- `next build`
-
-Note: `prisma migrate deploy` expects committed migrations under `prisma/migrations/`.
-
-### 3) Error monitoring (Sentry)
+### 2) Error monitoring (Sentry)
 
 Sentry is wired via `@sentry/nextjs` and these config files:
 
@@ -95,7 +69,7 @@ If you want sourcemaps uploaded during build, also set:
 - `SENTRY_ORG`
 - `SENTRY_PROJECT`
 
-### 4) Uploads / images (Object Storage)
+### 3) Uploads / images (Object Storage)
 
 This repo currently does not include server-side file uploads.
 If you add uploads later, avoid writing to the server filesystem on Vercel (ephemeral).
